@@ -1,1 +1,1 @@
-gcc main.c getHtml.c extMenu.c -lcurl -o start.out
+gcc main.c getHtml.c extMenu.c makeJson.c -lcurl -o start.out
