@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define CONTENT_TYPE_JSON "application/json"
+#define CONTENT_TYPE_TEXT "text/plain;charset=utf-8"
+#define FILE_NAME "Json.json"
 #define PORT_NUM 22213
 
 char *JSON;
@@ -12,7 +15,7 @@ int readFile() {
     long fileSize;
     
     // 파일 열기
-    file = fopen("Menu.txt", "rb");
+    file = fopen(FILE_NAME, "rb");
     if (!file) {
         printf("파일을 열 수 없습니다.\n");
         return 1;
@@ -58,7 +61,7 @@ static int answer_to_connection(void *cls,
         MHD_RESPMEM_PERSISTENT
     );
 
-    MHD_add_response_header(http_response, "Content-Type", "text/plain; charset=utf-8");
+    MHD_add_response_header(http_response, "Content-Type", CONTENT_TYPE_JSON);
 
     int ret = MHD_queue_response(connection, MHD_HTTP_OK, http_response);
     MHD_destroy_response(http_response);
